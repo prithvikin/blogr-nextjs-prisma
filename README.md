@@ -1,3 +1,4 @@
-# Fullstack Authentication Example with Next.js and NextAuth.js
+# FitBlog
+## CS 6440 Final Project by Prithvi Kinariwala
 
-This is the starter project for the fullstack tutorial with Next.js and Prisma. You can find the final version of this project in the [`final`](https://github.com/prisma/blogr-nextjs-prisma/tree/final) branch of this repo.
+This project uses Next.js and Prisma and is hosted on Vercel and used the quickstart documentation from Next.js
