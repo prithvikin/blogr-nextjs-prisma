@@ -46,6 +46,7 @@ model User {
   emailVerified DateTime?
   image         String?
   posts         Post[]
+  points        Int?
   accounts      Account[]
   sessions      Session[]
 }

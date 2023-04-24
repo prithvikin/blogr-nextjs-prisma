@@ -8,6 +8,7 @@ export type PostProps = {
   author: {
     name: string;
     email: string;
+    points: number;
   } | null;
   content: string;
   minutes: number;
@@ -18,12 +19,13 @@ const Post: React.FC<{ post: PostProps }> = ({ post }) => {
   const authorName = post.author ? post.author.name : "Unknown author";
   const shownMins = post.minutes? post.minutes: "Untimed";
 
+  post.author.points = post.author.points + Math.floor(post.minutes/30);
   return (
     <div onClick={() => Router.push("/p/[id]", `/p/${post.id}`)}>
       <h2>{post.title}</h2>
-      <small>By {authorName} for {shownMins} minutes</small>
-      <small> </small>
+      <small>{authorName} worked out for <b>{shownMins} minutes</b></small>
       <ReactMarkdown children={post.content} />
+      {post.published && ( <small><b>{post.author.points} point(s)</b> earned from this exercise</small>)}
       <style jsx>{`
         div {
           color: inherit;
