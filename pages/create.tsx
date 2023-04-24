@@ -6,12 +6,13 @@ import Router from 'next/router';
 
 const Draft: React.FC = () => {
   const [title, setTitle] = useState('');
+  const [minutes, setMinutes] = useState(0);
   const [content, setContent] = useState('');
 
   const submitData = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     try {
-      const body = { title, content };
+      const body = { title, minutes, content };
       await fetch('/api/post', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -35,6 +36,13 @@ const Draft: React.FC = () => {
             placeholder="Title"
             type="text"
             value={title}
+          />
+          <input
+            autoFocus
+            onChange={(e) => setMinutes(e.target.valueAsNumber)}
+            placeholder="Minutes"
+            type="number"
+            value={minutes}
           />
           <textarea
             cols={50}
