@@ -1,15 +1,14 @@
 import React from 'react';
 import prisma from '../lib/prisma';
-import type { NextPage } from 'next';
 import Head from 'next/head';
 import { GetStaticProps } from "next"
 
-interface User {
+type User = {
     name: string;
     points: number;
 }
 
-interface Props {
+type Props =  {
     users: User[];
 }
 
@@ -23,7 +22,7 @@ export const getStaticProps: GetStaticProps = async () => {
     return { props: { users } };
 }
 
-const Leaderboard: NextPage<Props> = ({ users }) => {
+const Leaderboard: React.FC<Props> = ({ users }) => {
     return (
         <div>
             <Head>
