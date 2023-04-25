@@ -25,10 +25,22 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   };
 };
 
-async function publishPost(id: string): Promise<void> {
+async function publishPost(id: string, points: number): Promise<void> {
   await fetch(`/api/publish/${id}`, {
     method: 'PUT',
   });
+
+  const response = await fetch(`/api/points/get-points`);
+  const old_pts = await response.json();
+
+  let updated_pts = old_pts.points + points;
+
+  await fetch('/api/points/add-points', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ updated_pts }),
+  });
+
   await Router.push('/');
 }
 
@@ -51,6 +63,7 @@ const Post: React.FC<PostProps> = (props) => {
     title = `${title} (Draft)`;
   }
   let mins = `For ${props?.minutes} Minutes`
+  let pts = Math.floor(props?.minutes/30);
 
   return (
     <Layout>
@@ -60,7 +73,7 @@ const Post: React.FC<PostProps> = (props) => {
         <p>{mins}</p>
         <ReactMarkdown children={props.content} />
         {!props.published && userHasValidSession && postBelongsToUser && (
-          <button onClick={() => publishPost(props.id)}>Publish</button>
+          <button onClick={() => publishPost(props.id, pts)}>Publish</button>
         )}
         { userHasValidSession && postBelongsToUser && (
           <button onClick={() => deletePost(props.id)}>Delete</button>
