@@ -23,31 +23,33 @@ const Draft: React.FC = () => {
 
       console.error(error);
     }
+
+    
   };
 
   return (
     <Layout>
       <div>
         <form onSubmit={submitData}>
-          <h1>New Draft</h1>
+          <h1>New FitBlog Post</h1>
           <input
             autoFocus
             onChange={(e) => setTitle(e.target.value)}
-            placeholder="Title"
+            placeholder="Activity"
             type="text"
             value={title}
           />
           <input
             autoFocus
             onChange={(e) => setMinutes(e.target.valueAsNumber)}
-            placeholder="Minutes"
+            placeholder="Duration (minutes)"
             type="number"
             value={minutes}
           />
           <textarea
             cols={50}
             onChange={(e) => setContent(e.target.value)}
-            placeholder="Content"
+            placeholder="Comments"
             rows={8}
             value={content}
           />
