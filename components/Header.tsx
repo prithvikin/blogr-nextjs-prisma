@@ -124,6 +124,7 @@ const Header: React.FC = () => {
         <Link href="/drafts">
           <a data-active={isActive('/drafts')}>My drafts</a>
         </Link>
+        <Link href="/leaderboard"><a>Leaderboard</a></Link>
         <style jsx>{`
           .bold {
             font-weight: bold;
