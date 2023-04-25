@@ -1,12 +1,8 @@
 import React from 'react';
 import prisma from '../lib/prisma';
-
-
-
-import { PrismaClient } from '@prisma/client';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-
+import { GetStaticProps } from "next"
 
 interface User {
     name: string;
@@ -15,6 +11,16 @@ interface User {
 
 interface Props {
     users: User[];
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+    const users = await prisma.user.findMany({
+        select: {
+            name: true,
+            points: true,
+        },
+    });
+    return { props: { users } };
 }
 
 const Leaderboard: NextPage<Props> = ({ users }) => {
@@ -45,15 +51,5 @@ const Leaderboard: NextPage<Props> = ({ users }) => {
         </div>
     );
 };
-
-export async function getStaticProps() {
-    const users = await prisma.user.findMany({
-        select: {
-            name: true,
-            points: true,
-        },
-    });
-    return { props: { users } };
-}
 
 export default Leaderboard;
