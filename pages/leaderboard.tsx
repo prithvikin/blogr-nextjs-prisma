@@ -32,6 +32,7 @@ const Leaderboard: React.FC<Props> = ({ users }) => {
                 </Head>
                 <div className="page">
                     <h1>Leaderboard</h1>
+                    <p>Updated every 10 minutes</p>
                     <table className="styled-table">
                         <thead>
                             <tr>
