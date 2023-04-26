@@ -13,7 +13,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     res.statusCode = 403;
     return { props: { drafts: [] } };
   }
-  
+
 
   const drafts = await prisma.post.findMany({
     where: {
@@ -51,6 +51,7 @@ const Drafts: React.FC<Props> = (props) => {
     <Layout>
       <div className="page">
         <h1>My Drafts</h1>
+        <p>Posts you've composed but not yet posted. Click a draft and publish to get points! </p>
         <main>
           {props.drafts.map((post) => (
             <div key={post.id} className="post">
@@ -61,7 +62,7 @@ const Drafts: React.FC<Props> = (props) => {
       </div>
       <style jsx>{`
         .post {
-          background: var(--geist-background);
+          background: white;
           transition: box-shadow 0.1s ease-in;
         }
 

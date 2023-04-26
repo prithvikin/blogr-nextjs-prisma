@@ -24,7 +24,7 @@ const Draft: React.FC = () => {
       console.error(error);
     }
 
-    
+
   };
 
   return (
@@ -32,6 +32,7 @@ const Draft: React.FC = () => {
       <div>
         <form onSubmit={submitData}>
           <h1>New FitBlog Post</h1>
+          <p>Draft an Activity, how long you exercised, and any additional comments</p>
           <input
             autoFocus
             onChange={(e) => setTitle(e.target.value)}
@@ -39,6 +40,7 @@ const Draft: React.FC = () => {
             type="text"
             value={title}
           />
+          <label>Duration: </label>
           <input
             autoFocus
             onChange={(e) => setMinutes(e.target.valueAsNumber)}
@@ -46,6 +48,7 @@ const Draft: React.FC = () => {
             type="number"
             value={minutes}
           />
+          <label> minutes </label>
           <textarea
             cols={50}
             onChange={(e) => setContent(e.target.value)}
@@ -68,9 +71,19 @@ const Draft: React.FC = () => {
           align-items: center;
         }
 
+
+
         input[type='text'],
         textarea {
           width: 100%;
+          padding: 0.5rem;
+          margin: 0.5rem 0;
+          border-radius: 0.25rem;
+          border: 0.125rem solid rgba(0, 0, 0, 0.2);
+        }
+
+        input[type='number'],
+        textarea {
           padding: 0.5rem;
           margin: 0.5rem 0;
           border-radius: 0.25rem;
